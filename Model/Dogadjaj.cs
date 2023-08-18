@@ -15,12 +15,12 @@ namespace Dogadjaji.Model
         private Guid _id;
         private string _naziv;
         private Grad _gradOdrzavanja;
-        private DateAndTime _datumIVrijemePocetka;
+        private DateTime _datumIVrijemePocetka;
         private int _trajanjeUMinutima;
         #endregion
 
         #region Constructors
-        public Dogadjaj(string naziv, Grad gradOdrzavanja, DateAndTime datumIVrijemePocetka, int trajanjeUMinutima)
+        public Dogadjaj(string naziv, Grad gradOdrzavanja, DateTime datumIVrijemePocetka, int trajanjeUMinutima)
         {
             _naziv = naziv;
             _id = Guid.NewGuid();
@@ -59,10 +59,10 @@ namespace Dogadjaji.Model
 
         public Grad GradOdrzavanja
         {
-            get { return GradOdrzavanja; }
+            get { return _gradOdrzavanja; }
             set
             {
-                if (value != null && value.Id != _gradOdrzavanja.Id)
+                if (value != null && !String.Equals(value.Naziv, _gradOdrzavanja.Naziv))
                 {
                     _gradOdrzavanja = value;
                     NotifyPropertyChanged();
@@ -70,12 +70,12 @@ namespace Dogadjaji.Model
             }
         }
 
-        public DateAndTime DatumIVrijemePocetka 
+        public DateTime DatumIVrijemePocetka 
         {
             get { return _datumIVrijemePocetka; }
             set
             {
-                if (value != null && !DateAndTime.Equals(value, _datumIVrijemePocetka))
+                if (!DateAndTime.Equals(value, _datumIVrijemePocetka))
                 {
                     _datumIVrijemePocetka = value;
                     NotifyPropertyChanged();

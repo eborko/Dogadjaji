@@ -13,5 +13,6 @@ namespace Dogadjaji
     /// </summary>
     public partial class App : Application
     {
+
     }
 }
